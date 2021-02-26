@@ -23,21 +23,21 @@ struct LandmarkList: View {
                 Toggle(isOn: $showFavoritesOnly) {
                     Text("Favorites only")
                 }
+
                 ForEach(filteredLandmarks) { landmark in
                     NavigationLink(destination: LandmarkDetail(landmark: landmark)) {
                         LandmarkRow(landmark: landmark)
                     }
                 }
             }
-                .navigationTitle("Landmarks")
+            .navigationTitle("Landmarks")
         }
     }
 }
 
 struct LandmarkList_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(["iPhone SE (2nd generation)", "iPhone XS Max"], id: \.self) { deviceName in
-            LandmarkList()
-        }
+        LandmarkList()
+            .environmentObject(ModelData())
     }
 }
